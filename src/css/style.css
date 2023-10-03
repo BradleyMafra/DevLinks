@@ -26,7 +26,7 @@
 
 body {
     background: var(--bg-url) no-repeat top center/cover;
-    height: 100vh;
+    max-height: 100vh;
 }
 
 body * {
@@ -70,13 +70,18 @@ body * {
     height: 32px;
     position: absolute;
     border-radius: 50%;
+    animation: slide-out .2s;
     transform: translateY(-50%);
     background:white var(--switch-bg-url) no-repeat center;
 }
 
+#switch button:hover {
+    cursor: pointer;
+    outline: 8px solid var(--highligh-color);
+}
+
 .light #switch button {
-    right: 0;
-    left: initial;
+    animation: slide-in .2s forwards;
 }
 
 #switch span {
@@ -145,7 +150,23 @@ footer {
     text-align: center;
 }
 
-@keyframes slide-in {}
+@keyframes slide-in {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
 
 @media (min-width: 700px) {
     :root {
@@ -154,5 +175,11 @@ footer {
 
     .light {
         --bg-url: url(../../assets/bg-desktop-light.jpg);
+    }
+}
+
+@media(min-height: 1040px) {
+    body {
+        height: 100vh;
     }
 }
